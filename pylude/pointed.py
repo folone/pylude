@@ -1,15 +1,16 @@
 from functor import Functor, sequenceFunctor, lambdaFunctor
 from function import curry
 
+
 class Pointed(Functor):
-  p = None
+    p = None
 
-  def __init__(self, f, p):
-    Functor.__init__(self, f)
-    self.p = p
+    def __init__(self, f, p):
+        Functor.__init__(self, f)
+        self.p = p
 
-  def pure(self, a):
-    return self.p(a)
+    def pure(self, a):
+        return self.p(a)
 
 sequencePointed = Pointed(curry(sequenceFunctor.fmap), lambda k: [k()])
 
